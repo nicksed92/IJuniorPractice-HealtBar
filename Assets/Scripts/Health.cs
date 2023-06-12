@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
@@ -9,48 +9,30 @@ public class Health : MonoBehaviour
     [SerializeField] private float _changeHealthDuration = 0.5f;
     [SerializeField] private HealthView _healthView;
 
-    private bool _isHealthChanging = false;
+    private float _currentHealth;
 
-    public float CurrentHealth { get; private set; }
+    public static UnityEvent<float> HealthChanged = new UnityEvent<float>();
 
-    private void Awake()
+    public float CurrentHealth
     {
-        HealthChangeButton.Clicked.AddListener(OnHealthChangeButtonClicked);
+        get
+        {
+            return _currentHealth;
+        }
+        set
+        {
+            _currentHealth = value;
+            HealthChanged.Invoke(_currentHealth);
+        }
     }
 
     private void Start()
     {
         CurrentHealth = _startValue;
-        _healthView.Render(this);
     }
 
-    private IEnumerator ChangeHealthSmoothly(float damage)
+    public void ChangeHealth(float value)
     {
-        _isHealthChanging = true;
-
-        float startHealth = CurrentHealth;
-        float targetHealth = Mathf.Clamp(CurrentHealth + damage, _minValue, _maxValue);
-        float elapsedTime = 0;
-        float normalizedTime;
-
-        while (elapsedTime < _changeHealthDuration)
-        {
-            normalizedTime = elapsedTime / _changeHealthDuration;
-            CurrentHealth = Mathf.Lerp(startHealth, targetHealth, normalizedTime);
-            _healthView.Render(this);
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-
-        _isHealthChanging = false;
-    }
-
-    private void OnHealthChangeButtonClicked(float value)
-    {
-        if (_isHealthChanging)
-            return;
-
-        StartCoroutine(ChangeHealthSmoothly(value));
+        CurrentHealth = Mathf.Clamp(CurrentHealth + value, _minValue, _maxValue);
     }
 }

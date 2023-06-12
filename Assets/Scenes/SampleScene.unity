@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 46471039}
   - component: {fileID: 46471038}
   - component: {fileID: 46471037}
-  - component: {fileID: 46471036}
   m_Layer: 5
   m_Name: HealButton
   m_TagString: Untagged
@@ -164,19 +163,6 @@ RectTransform:
   m_AnchoredPosition: {x: 300, y: 0}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &46471036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46471034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a074adf21c0ba8b4385b72959895f851, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _value: 10
 --- !u!114 &46471037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 46471038}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1254640917}
+        m_TargetAssemblyTypeName: Health, Assembly-CSharp
+        m_MethodName: ChangeHealth
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &46471038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,7 +466,6 @@ GameObject:
   - component: {fileID: 526602194}
   - component: {fileID: 526602193}
   - component: {fileID: 526602192}
-  - component: {fileID: 526602195}
   m_Layer: 5
   m_Name: AttackButton
   m_TagString: Untagged
@@ -540,7 +537,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 526602193}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1254640917}
+        m_TargetAssemblyTypeName: Health, Assembly-CSharp
+        m_MethodName: ChangeHealth
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: -10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &526602193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,19 +588,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526602190}
   m_CullTransparentMesh: 1
---- !u!114 &526602195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526602190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a074adf21c0ba8b4385b72959895f851, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _value: -10
 --- !u!1 &568374587
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,7 +977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fea8f3dbae4644ab180ff95532d685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startValue: 50
+  _startValue: 60
   _maxValue: 100
   _minValue: 0
   _changeHealthDuration: 0.5
