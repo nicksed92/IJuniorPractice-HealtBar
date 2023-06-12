@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
 
     private float _currentHealth;
 
-    public static UnityEvent<float> HealthChanged = new UnityEvent<float>();
+    public static UnityEvent<float> Changed = new UnityEvent<float>();
 
     public float CurrentHealth
     {
@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
         set
         {
             _currentHealth = value;
-            HealthChanged.Invoke(_currentHealth);
+            Changed.Invoke(_currentHealth);
         }
     }
 

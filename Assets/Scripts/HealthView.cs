@@ -13,7 +13,7 @@ public class HealthView : MonoBehaviour
 
     private void Awake()
     {
-        Health.HealthChanged.AddListener(OnHealthChanged);
+        Health.Changed.AddListener(OnHealthChanged);
     }
 
     private void OnHealthChanged(float value)
