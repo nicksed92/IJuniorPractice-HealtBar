@@ -6,8 +6,6 @@ public class Health : MonoBehaviour
     [SerializeField] private float _startValue = 50;
     [SerializeField] private float _maxValue = 100;
     [SerializeField] private float _minValue = 0;
-    [SerializeField] private float _changeHealthDuration = 0.5f;
-    [SerializeField] private HealthView _healthView;
 
     private float _currentHealth;
 
