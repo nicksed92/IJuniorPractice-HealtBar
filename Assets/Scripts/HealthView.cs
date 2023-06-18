@@ -12,7 +12,7 @@ public class HealthView : MonoBehaviour
     private float _currentValue;
     private float _targetValue;
 
-    private Coroutine _healthChangedRoutine;
+    private Coroutine _healthChangingRoutine;
 
     private void Awake()
     {
@@ -26,13 +26,13 @@ public class HealthView : MonoBehaviour
 
     private void OnHealthChanged(float value)
     {
-        if (_healthChangedRoutine != null)
+        if (_healthChangingRoutine != null)
         {
             StopCoroutine(_healthChangedRoutine);
         }
 
         _targetValue = value;
-        _healthChangedRoutine = StartCoroutine(ChangeHealthSmoothly());
+        _healthChangingRoutine = StartCoroutine(ChangeHealthSmoothly());
     }
 
     private IEnumerator ChangeHealthSmoothly()
