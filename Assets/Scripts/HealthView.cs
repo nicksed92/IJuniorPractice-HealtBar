@@ -7,19 +7,32 @@ public class HealthView : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private Health _health;
 
     private float _currentValue;
     private float _targetValue;
 
+    private Coroutine _healthChangedRoutine;
+
     private void Awake()
     {
-        Health.Changed.AddListener(OnHealthChanged);
+        _health.Changed += OnHealthChanged;
+    }
+
+    private void OnDestroy()
+    {
+        _health.Changed -= OnHealthChanged;
     }
 
     private void OnHealthChanged(float value)
     {
+        if (_healthChangedRoutine != null)
+        {
+            StopCoroutine(_healthChangedRoutine);
+        }
+
         _targetValue = value;
-        StartCoroutine(ChangeHealthSmoothly());
+        _healthChangedRoutine = StartCoroutine(ChangeHealthSmoothly());
     }
 
     private IEnumerator ChangeHealthSmoothly()
@@ -34,12 +47,11 @@ public class HealthView : MonoBehaviour
             normalizedTime = elapsedTime / duration;
             value = Mathf.Lerp(_currentValue, _targetValue, normalizedTime);
             elapsedTime += Time.deltaTime;
+            _currentValue = value;
             _slider.value = value;
             _text.text = value.ToString("F0");
 
             yield return null;
         }
-
-        _currentValue = _targetValue;
     }
 }

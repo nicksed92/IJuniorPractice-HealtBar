@@ -965,6 +965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slider: {fileID: 1254640915}
   _text: {fileID: 568374589}
+  _health: {fileID: 1254640917}
 --- !u!114 &1254640917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -980,8 +981,6 @@ MonoBehaviour:
   _startValue: 60
   _maxValue: 100
   _minValue: 0
-  _changeHealthDuration: 0.5
-  _healthView: {fileID: 1254640916}
 --- !u!1 &1262986935
 GameObject:
   m_ObjectHideFlags: 0
