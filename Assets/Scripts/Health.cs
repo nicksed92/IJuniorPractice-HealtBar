@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
 
     private float _currentHealth;
 
-    public UnityAction<float> Changed;
+    public event UnityAction<float> Changed;
 
     public float CurrentHealth
     {
